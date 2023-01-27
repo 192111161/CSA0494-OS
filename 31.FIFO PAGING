@@ -1,4 +1,4 @@
-[10:32 am, 27/01/2023] +91 6304 434 707: #include <stdio.h>
+#include <stdio.h>
 int main()
 {
 int referenceString[10], pageFaults = 0, m, n, s, pages, frames;
