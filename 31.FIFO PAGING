@@ -1,50 +1,50 @@
-#include<stdio.h>
-#include<conio.h>
-#include<stdlib.h>
+[10:32 am, 27/01/2023] +91 6304 434 707: #include <stdio.h>
 int main()
 {
-  int mbt[50];
-  int i, j, k, pa, bs, bfree, bfree_mode, ps, js, var = 0, var2=0, jn, job;
-
-    printf("\n\t\t PAGING\n");
-
-    printf("\n\t Enter the physical address space:");
-        scanf("%d",&pa);
-    printf("\n\t Enter the Block size:");
-        scanf("%d",&bs);
-    bfree = pa / bs;
-    printf("\n\t the number of blocks are = %d\n",bfree);
-    bfree_mode = bfree;
-    for( i = 0 ; i < bfree ; i++ ) {
-        mbt[i] = 0;
-    }
-
-    printf("How many jobs do you want to enter to the memory ?\n");
-        scanf("%d",&jn);
-       for ( j = 0 ; j <= jn+2 ; j++  )  {
-
-        printf("Enter %d Job size :\n",j+1);
-            scanf("%d",&job);
-        k = var;
-        var = job / bs ;
-        if (job % bs !=0)
-            var +=1;
-        if ( var <= bfree ) {
-            var2 += var;
-            for ( k ; k < var2 ; k++  ) {
-                mbt[k] = j+1;
-            }
-            bfree -= var;
-            printf("mbt[0] = OS Reserved!\n");
-            for ( i = 1 ; i < bfree_mode ; i++)
-                printf("mbt[%d] = %d\n",i,mbt[i]);
-
-
-        }else if ( var > bfree ) {
-            printf("\nThe Memory is not enough for the %d Job",j+1);
-            break;
-          }
-    }
-
-getch();
+int referenceString[10], pageFaults = 0, m, n, s, pages, frames;
+printf("\nEnter the number of Pages:\t");
+scanf("%d", &pages);
+printf("\nEnter reference string values:\n");
+for( m = 0; m < pages; m++)
+{
+   printf("Value No. [%d]:\t", m + 1);
+   scanf("%d", &referenceString[m]);
+}
+printf("\n What are the total number of frames:\t");
+{
+   scanf("%d", &frames);
+}
+int temp[frames];
+for(m = 0; m < frames; m++)
+{
+  temp[m] = -1;
+}
+for(m = 0; m < pages; m++)
+{
+  s = 0;
+  for(n = 0; n < frames; n++)
+   {
+      if(referenceString[m] == temp[n])
+         {
+            s++;
+            pageFaults--;
+         }
+   }     
+   pageFaults++;
+   if((pageFaults <= frames) && (s == 0))
+      {
+        temp[m] = referenceString[m];
+      }   
+   else if(s == 0)
+      {
+        temp[(pageFaults - 1) % frames] = referenceString[m];
+      }
+      printf("\n");
+      for(n = 0; n < frames; n++)
+       {     
+         printf("%d\t", temp[n]);
+       }
 } 
+printf("\nTotal Page Faults:\t%d\n", pageFaults);
+return 0;
+}
